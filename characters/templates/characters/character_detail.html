@@ -1,0 +1,79 @@
+{% extends "characters/base.html" %}
+
+{% block title %}
+    {{ character.name }} | Monster High
+{% endblock %}
+
+{% block content %}
+
+<section class="character-detail">
+
+    <div class="character-heading">
+
+        <h1>{{ character.name }}</h1>
+
+        <p class="wave-label">
+            Generation 1 • Wave {{ character.wave }}
+        </p>
+
+    </div>
+
+
+    <div class="information-card">
+
+        <h2>Character Information</h2>
+
+        <div class="information-row">
+            <strong>Monster Type:</strong>
+            <span>{{ character.monster_type }}</span>
+        </div>
+
+        <div class="information-row">
+            <strong>Personality:</strong>
+            <span>{{ character.personality }}</span>
+        </div>
+
+        <div class="information-row">
+            <strong>Interests:</strong>
+            <span>{{ character.interests }}</span>
+        </div>
+
+        <div class="information-row">
+            <strong>Relationships:</strong>
+            <span>{{ character.relationships }}</span>
+        </div>
+
+        <div class="information-row">
+            <strong>Background:</strong>
+            <span>{{ character.background }}</span>
+        </div>
+
+        <div class="information-row">
+            <strong>Additional Information:</strong>
+            <span>{{ character.additional_information }}</span>
+        </div>
+
+    </div>
+
+
+    <div class="detail-buttons">
+
+        <a
+            href="{% url 'characters:character_list' %}"
+            class="button"
+        >
+            Back to Characters
+        </a>
+
+        <a
+            href="{% url 'characters:home' %}"
+            class="button secondary"
+        >
+            Back to Home
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

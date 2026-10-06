@@ -1,0 +1,139 @@
+{% extends "characters/base.html" %}
+
+{% block title %}
+    Characters | Monster High
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+
+    <h1>Monster High Characters</h1>
+
+    <p>
+        Browse and search Monster High Generation 1 characters
+        from Waves 1 through 4.
+    </p>
+
+</section>
+
+
+<section class="search-section">
+
+    <h2>Find a Character</h2>
+
+    <form method="get" class="search-form">
+
+        <div class="form-group">
+
+            <label for="search">
+                Search by Name
+            </label>
+
+            <input
+                type="text"
+                id="search"
+                name="search"
+                value="{{ search_term }}"
+                placeholder="Enter a character name"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="wave">
+                Filter by Wave
+            </label>
+
+            <select id="wave" name="wave">
+
+                <option value="">
+                    All Waves
+                </option>
+
+                {% for wave_number, wave_name in waves.items %}
+
+                    <option
+                        value="{{ wave_number }}"
+                        {% if selected_wave == wave_number|stringformat:"s" %}
+                            selected
+                        {% endif %}
+                    >
+                        {{ wave_name }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+
+        <div class="form-buttons">
+
+            <button type="submit" class="button">
+                Search
+            </button>
+
+            <a
+                href="{% url 'characters:character_list' %}"
+                class="button secondary"
+            >
+                Clear
+            </a>
+
+        </div>
+
+    </form>
+
+</section>
+
+
+<section class="character-section">
+
+    <h2>Character Collection</h2>
+
+    <div class="character-grid">
+
+        {% for character in characters %}
+
+            <article class="character-card">
+
+                <h3>
+                    {{ character.name }}
+                </h3>
+
+                <p>
+                    <strong>Wave:</strong>
+                    {{ character.wave }}
+                </p>
+
+                <p>
+                    <strong>Monster Type:</strong>
+                    {{ character.monster_type }}
+                </p>
+
+                <a
+                    href="{% url 'characters:character_detail' character.id %}"
+                    class="button"
+                >
+                    View Information
+                </a>
+
+            </article>
+
+        {% empty %}
+
+            <p>
+                No characters were found.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

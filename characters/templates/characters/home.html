@@ -1,0 +1,57 @@
+{% extends "characters/base.html" %}
+
+{% block title %}
+    Monster High Character Information System
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Monster High</h1>
+
+    <h2>Generation 1 Character Information System</h2>
+
+    <p>
+        Explore information about Monster High Generation 1 characters
+        from Waves 1 through 4.
+    </p>
+
+    <a href="{% url 'characters:character_list' %}" class="button">
+        View Characters
+    </a>
+</section>
+
+<section class="overview">
+
+    <h2>Character Collection</h2>
+
+    <p>
+        Currently, the system contains
+        <strong>{{ character_count }}</strong>
+        characters.
+    </p>
+
+    <div class="wave-grid">
+
+        {% for wave_number, wave_name in waves.items %}
+
+            <div class="wave-card">
+
+                <h3>{{ wave_name }}</h3>
+
+                <a
+                    href="{% url 'characters:character_list' %}?wave={{ wave_number }}"
+                    class="button"
+                >
+                    View {{ wave_name }}
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}
