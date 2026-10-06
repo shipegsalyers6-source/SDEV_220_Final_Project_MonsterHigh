@@ -1,17 +1,8 @@
-from django.urls import path
-
-from . import views
-
-
-app_name = "characters"
+from django.contrib import admin
+from django.urls import include, path
 
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("characters/", views.character_list, name="character_list"),
-    path(
-        "characters/<int:character_id>/",
-        views.character_detail,
-        name="character_detail",
-    ),
+    path("admin/", admin.site.urls),
+    path("", include("characters.urls")),
 ]
